@@ -46,6 +46,3 @@ Use Postman to verificate rest api functionality.
 ### Swagger-UI
 
 To access the swagger ui go to -  http://localhost:8011/api-docs 
-"# cw_backend" 
-"# cw_backend" 
-"# cw_backend" 

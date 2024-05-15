@@ -1,0 +1,1200 @@
+{
+    "openapi" : "3.0.1",
+    "info" : {
+      "title" : "oportuna-cw-backend",
+      "description" : "Micro servicio Typescript nodejs y prisma ORM.",
+      "version" : "1.0.3"
+    },
+    "servers" : [ 
+      
+      {
+      "url" : "http://localhost:8011",
+      "description" : "Local server for test"
+    } 
+  ],
+
+    
+
+    "paths" : {
+
+      "/heartbeat" : {
+        "get" : {
+          "tags": ["Servicios de Autenticación"],
+          "description" : "This api is used to check if the server is alive",
+          "responses" : {
+            "200" : {
+              "description" : "Returns a standard 200 OK message",
+              "content" : {
+                "application/json; charset=utf-8" : {
+                  "schema" : {
+                    "type" : "object"
+                  }
+                }
+              }
+            }
+          },
+          "servers" : [ 
+            {
+              "url": "https://sm.oportuna.red"
+            },  
+          {
+            "url" : "http://localhost:8011"
+          } ]
+        }
+        
+      },
+      "/tokens" : {
+        "post" : {
+          "tags": ["Servicios de Autenticación"],
+          "description" : "This api is used to login a user. It uses JWT tokens to authenticate a session.",
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "password" : {
+                      "type" : "string"
+                    },
+                    "email" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "examples" : {
+                  "0" : {
+                    "value" : "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"Ttbhelp@$1234\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "A successful response will add the Token to the session Cookie.",
+              "content" : {
+                "application/json; charset=utf-8" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            },
+            "400" : {
+              "description" : "This response is sent when the login fails",
+              "content" : {
+                "application/json; charset=utf-8" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "servers" : [ {
+            "url" : "http://localhost:8011"
+          } ]
+        },
+        "servers" : [ {
+          "url" : "http://localhost:8011"
+        } ]
+      },
+      "/users" : {
+        "get" : {
+          "tags": ["Servicios de Autenticación"],
+          "description" : "Get users by Email",
+          "responses" : {
+            "200" : {
+              "description" : "Returns a user object if exists in the server",
+              "content" : {
+                "application/json; charset=utf-8" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "servers" : [ {
+            "url" : "http://localhost:8011"
+          } ]
+        },
+        "servers" : [ {
+          "url" : "http://localhost:8011"
+        } ]
+      },
+
+      "/products" : {
+        "get" : {
+          "tags": ["Servicios de e-commerce"],
+          "description" : "Get ALL products by groupId",
+          "responses" : {
+            "200" : {
+              "description" : "Returns a user object if exists in the server",
+              "content" : {
+                "application/json; charset=utf-8" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "servers" : [ {
+            "url" : "http://localhost:8011"
+          } ]
+        },
+        "servers" : [ {
+          "url" : "http://localhost:8011"
+        } ]
+      },
+      "/products/:id" : {
+        "get" : {
+          "tags": ["Servicios de e-commerce"],
+          "description" : "Get ALL products by groupId",
+          "responses" : {
+            "200" : {
+              "description" : "Returns a user object if exists in the server",
+              "content" : {
+                "application/json; charset=utf-8" : {
+                  "schema" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "servers" : [ {
+            "url" : "http://localhost:8011"
+          } ]
+        },
+        "servers" : [ {
+          "url" : "http://localhost:8011"
+        } ]
+      },
+      "/get_empresa" : {
+        "post": {
+          "summary":"Obtenear datos de una empresa especifica",
+          "tags": ["Servicios de e-commerce"],
+          "description" : "Obtenear datos de una empresa especifica",
+          "requestBody": {
+            "required": true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "id_empresa": {
+                      "type":"integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna los datos de la empresa si existe",
+              "content": {
+                "text/plain; charset=utf-8": {
+                  "schema":{
+                    "$ref":"#/components/schemas/empresa_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "https://sm.oportuna.red"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/category/get_categorias_tiendas" : {
+        "post": {
+          "summary":"Obtener las categorias de na empresa especifica",
+          "tags": ["Servicios de e-commerce"],
+          "description" : "Obtenear las categorias de una empresa especifica",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id_empresa":{
+                      "type":"integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna las categorias de la empresa si existe",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/categorias_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "https://sm.oportuna.red"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/productosTienda/get_productos_tiendas" : {
+        "post": {
+          "summary": "Obtener la informacion de todos los productos de una empresa especifica",
+          "tags": ["Servicios de e-commerce"],
+          "description" : "Obtenear los productos de una empresa especifica",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id_empresa":{
+                      "type":"integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna todos los productos de la empresa si existe",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/productos_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "https://sm.oportuna.red"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/productosTienda/get_producto_tienda" : {
+        "post": {
+          "summary":"Obtenear un producto especifico de una empresa especifica",
+          "tags": ["Servicios de e-commerce"],
+          "description" : "Obtenear un producto especifico de una empresa especifica",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id_empresa":{
+                      "type":"integer"
+                    },
+                    "id_producto": {
+                      "type":"integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna los datos de un producto si existe",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/producto_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "https://sm.oportuna.red"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/tarea/create_tarea" : {
+        "post": {
+          "tags": ["Servicios de tareas"],
+          "description" : "Guarda a informacion de una tarea",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object"
+                },
+                "example": {
+                    "id_grupo": "125", 
+                    "title": "Tarea crud", 
+                    "body": "probando crud de tareas desde postman", 
+                    "start": "2023-09-30 14:39:17", 
+                    "id_tipologia": "19", 
+                    "tarea_estado_id": "1", 
+                    "lat": "6.1763662", 
+                    "lng": "-75.6494212", 
+                    "vendedor": "ac.libero@yahoo.edu",
+                    "cliente": "ac.libero@yahoo.edu"
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna un mensaje de tarea guardada con exito y los datos de la tarea",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/tarea_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/tarea/actualizar_tarea" : {
+        "put": {
+          "tags": ["Servicios de tareas"],
+          "description" : "Actualiza la informacion de una tarea",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object"
+                },
+                "example": {
+                  "id": "37",
+                  "title": "Tarea",
+                  "body": "Se actualizo Tarea",
+                  "tarea_estado_id": "2",
+                  "archivo": "Opcional"
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna un mensaje de tarea actualizada con exito",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/tareaActualizada_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/tarea/get_tareas" : {
+        "post": {
+          "tags": ["Servicios de tareas"],
+          "description" : "Trae todas las tareas de un cliente en especifico",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object"
+                },
+                "example": {
+                  "cliente":"ac.libero@yahoo.edu"
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna un array de objetos con la informacion de cada tarea",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/get_tareas_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "http://localhost:8011"
+            },
+            {
+            "url": "https://sm.oportuna.red"
+          }
+        ]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      },
+      "/tarea/delete_tarea" : {
+        "delete": {
+          "tags": ["Servicios de tareas"],
+          "description" : "Elimina una tarea segun su ID",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json; charset=utf-8":{
+                "schema":{
+                  "type":"object"
+                },
+                "example": {
+                  "id":"21"
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna un mensaje con el id de la tarea eliminida",
+              "content": {
+                "application/json; charset=utf-8" : {
+                  "schema":{
+                    "$ref":"#/components/schemas/delete_tareas_body"
+                  }
+                }
+              }
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          }]
+        }, 
+        "servers":[{
+          "url":"http://localhost:8011"
+        }]
+      }, 
+
+      
+      "/logonPV":{
+        "post" : {
+          "summary" : "Inicia sesion",
+          "tags" : ["Servicios de Autenticación"],
+          "requestBody" : {
+            "required" : true,
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "user" : {"type" : "string"},
+                    "pass" : {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Retorna token y usuario logueado."
+          }
+          
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+      
+      "/sendMailCambiaClave" : {
+        "post" : {
+          "summary" : "Envia correo para cambiar clave.",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "mail":{"type":"string"}
+                  }
+                }
+                }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "Codigo enviado con exito"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/registroP_mail" : {
+        "post" : {
+          "summary" : "Registra un usuario",
+          "description": "Despues de validar el codigo enviado al email registra usuario en la base de datos",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "username":{"type":"string"},
+                    "password":{"type":"string"},
+                    "email":{"type":"string"},
+                    "name" : {"type":"string"},
+                    "telefono": {"type": "string"},
+                    "imei": {"type": "string"},
+                    "miTelefono": {"type": "string"},
+                    "miTokenF": {"type": "string"},
+                    "codigo": {"type":"string"},
+                    "gender": {"type": "string"},
+                    "DocumentNumber": {"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "Usuario registrado correctamente"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/sendMailConfirma" : {
+        "post" : {
+          "summary" : "Envia codigo de registro.",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "mail":{"type":"string"}
+                  }
+                }
+                }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "Codigo enviado con exito"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/cambioCl": {
+        "post" : {
+          "summary" : "Cambia la clave del cliente",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "codigo":{"type":"string"},
+                    "pass": {"type":"string"},
+                    "mail": {"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "Clave cambiada correctamente."
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/getHistory": {
+        "get" : {
+          "summary" : "Obtiene el historial de transacciones.",
+          "tags" : ["Servicios Wallet" ],
+          "description": "El parametro id es el correo del usuario.",
+          "parameters" : [{
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+            	"type": "string"
+          	}
+        	}],
+          "responses" : {
+            "200" : {
+              "description": "Historial obtenido con exito."
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+
+        }
+      },
+
+      "/getClientesByFuncionario": {
+        "get" : {
+          "summary" : "Obtener clientes por funcionario.",
+          "tags" : [ "Servicios Wallet" ],
+          "parameters" : [{
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Email de usuario",
+            "schema": {
+            	"type": "string"
+          	}
+          },{
+            "name": "GroupId",
+            "in": "query",
+            "required": true,
+            "description": "Id del grupo a consultar",
+            "schema": {
+            	"type": "integer"
+            }
+          }],
+          "responses" : {
+            "200" : {
+              "description": "Listado de clientes obtenidos con exito."
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }]
+        }
+      },
+
+      "/servicios4": {
+        "get": {
+          "summary":"Consulta los servicios con estado unpaid",
+          "description": "Se obtiene como respuesta todos los servicios creados con estado unpaid para un conductor",
+          "tags" : ["Servicios Conectcarga"],
+          "parameters" : [{
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Email de conductor",
+            "schema": {
+            	"type": "string"
+          	}
+          }],
+          "responses" : {
+            "200" : {
+              "description": "Listado de servicios unpaid"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }]
+        }
+      },
+
+      "/servicios3": {
+        "get": {
+          "summary":"Consulta los servicios con estado paid",
+          "description": "Se obtiene como respuesta todos los servicios creados con estado paid para un conductor",
+          "tags" : ["Servicios Conectcarga"],
+          "parameters" : [{
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "Email de conductor",
+            "schema": {
+            	"type": "string"
+          	}
+          }],
+          "responses" : {
+            "200" : {
+              "description": "Listado de servicios paid"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }]
+        }
+      },
+
+      "/aceptaService": {
+        "post" : {
+          "summary" : "Aceptar servicio",
+          "tags" : ["Servicios Conectcarga" ],
+          "description": "",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id_conduc":{"type":"string"},
+                    "order": {"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "Servicio aceptado",
+              "content":{
+                "application/json":{
+                  "schema":{}
+                  }
+                }
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/aceptaService2": {
+        "post" : {
+          "summary" : "Aceptar servicio",
+          "tags" : ["Servicios Conectcarga" ],
+          "description": "",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id_conduc":{"type":"string"},
+                    "order": {"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "Servicio finalizado",
+              "content":{
+                "application/json":{
+                  "schema":{}
+                  }
+                }
+            }
+          },
+          "servers": [
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/latlng": {
+        "post" : {
+          "summary" : "Datos adicionales para aceptar orden",
+          "tags" : ["Servicios Conectcarga" ],
+          "description": "",
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "fecha":{"type":"string"},
+                    "lat": {"type":"string"},
+                    "lng": {"type":"string"},
+                    "order": {"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "",
+              "content":{
+                "application/json":{
+                  "schema":{}
+                  }
+                }
+            }
+          },
+          "servers": [
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      }
+
+    },
+
+    "tags": [
+      {
+        "name": "Servicios de e-commerce",
+        "description": "Aconticuanción encontraras los endpoints para generar los servicios de un e-commerce."
+      },
+      {
+        "name": "Servicios Wallet",
+        "description": "Aconticuanción encontraras los endpoints para los servicios de una wallet."
+      },
+      {
+        "name": "Servicios Conectcarga",
+        "description": "Aconticuanción encontraras los endpoints para los servicios de Conectcarga, que te permitiran crear y aceptar ordenes."
+      },
+      {
+        "name": "Servicios de tareas",
+        "description": "Acontinuación encontraras los endpoints que te permitiran realizar el crud para un aplicativo de tareas."
+      },
+      {
+        "name": "Servicios de Autenticación",
+        "description": "Acontinuación encontraras los endpoints para generar el registro y login de usuarios. Se genera un token para verificar la autenticidad del usuario."
+      }
+    ],
+    "components": {
+      "schemas": {
+        "users_body": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "dob": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        },
+        "tokens_body": {
+          "type": "object",
+          "properties": {
+            "password": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        },
+        "tarea_body":{
+          "type":"object",
+          "properties":{
+              "message": {
+                "type": "string"
+              }
+          }
+        },
+        "categorias_body": {
+          "type":"object",
+          "properties": {
+            "categorys": {
+              "type":"object"
+            }
+          }
+        },
+        "productos_body": {
+          "type":"object",
+          "properties": {
+            "productos": {
+              "type":"object"
+            }
+          }
+        },
+        "producto_body": {
+          "type":"object",
+          "properties":{
+              "product": {
+                  "type": "object"
+              },
+              "base_url_raiz": {
+                "type":"string"
+              }
+          }
+        },
+        "empresa_body": {
+          "type": "object",
+          "properties": {
+            "id_tienda": {
+              "type": "integer"
+            },
+            "id_empresa": {
+              "type":"integer"
+            },
+            "nombreweb": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "telefono": {
+              "type": "string"
+            },
+            "telefono2": {
+              "type": "string"
+            },
+            "direccion":{
+              "type": "string"
+            },
+            "lat": {
+              "type": "string"
+            },
+            "lng": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "tipo": {
+              "type": "string"
+            },
+            "url_code": {
+              "type": "string"
+            },
+            "categoria": {
+              "type": "integer"
+            },
+            "dominio": {
+              "type": "string"
+            },
+            "facebook":{
+              "type": "string"
+            },
+            "twitter": {
+              "type": "string"
+            },
+            "linkedin": {
+              "type": "string"
+            },
+            "instagram": {
+              "type": "string"
+            },
+            "youtube": {
+              "type": "string"
+            },
+            "whatsapp":{
+              "type": "string"
+            },
+            "whatsapp_text": {
+              "type": "string"
+            },
+            "horario": {
+              "type": "string"
+            },
+            "horario_esp":{
+              "type": "string"
+            },
+            "color_tema": {
+              "type": "string"
+            },
+            "color_menu": {
+              "type": "string"
+            },
+            "color_boton_primary": {
+              "type": "string"
+            },
+            "favicon": {
+              "type": "string"
+            },
+            "id_tipopage":{
+              "type": "integer"
+            },
+            "pais": {
+                "type": "object"
+            },
+            "departamento": {
+              "type": "object"
+            },
+            "municipio": {
+              "type": "object"
+            },
+            "logo": {
+              "type": "string"
+            },
+            "favicon_image": {
+              "type": "string"
+            }
+          }
+        },
+        "tareaActualizada_body": {
+          "type":"object",
+          "properties": {
+            "message": {
+              "type":"string"
+            }
+          }
+        },
+        "delete_tareas_body":{
+          "type":"object",
+          "properties":{
+            "message":{
+              "type":"string"
+            }
+          }
+        },
+        "get_tareas_body":{
+          "type":"array",
+          "properties": {
+            "tareas": {
+              "type":"object",
+              "properties": {
+                "id": {
+                  "type":"integer"
+                },
+                "title": {
+                  "type":"string"
+                },
+                "body": {
+                  "type":"string"
+                },
+                "url": {
+                  "type":"string"
+                },
+                "class": {
+                  "type":"string"
+                },
+                "start": {
+                  "type":"string"
+                },
+                "end": {
+                  "type":"string"
+                },
+                "id_grupo": {
+                  "type":"integer"
+                },
+                "id_usuario": {
+                  "type":"integer"
+                },
+                "vehiculo": {
+                  "type":"string"
+                },
+                "placa": {
+                  "type":"string"
+                },
+                "notas": {
+                  "type":"string"
+                },
+                "entregado": {
+                  "type":"integer"
+                },
+                "tarea_estado_id": {
+                  "type":"integer"
+                },
+                "id_tipologia": {
+                  "type":"integer"
+                },
+                "vendedor": {
+                  "type":"string"
+                },
+                "cliente": {
+                  "type":"string"
+                },
+                "lat": {
+                  "type":"string"
+                },
+                "lng": {
+                  "type":"string"
+                },
+                "archivo": {
+                  "type":"string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

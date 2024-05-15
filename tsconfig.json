@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "target": "ES2018",
+    "outDir": "dist",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "rootDir": "src"
+  },
+  "include": ["src/**/*.ts", "src/**/*.js", "*.json"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
