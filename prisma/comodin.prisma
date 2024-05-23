@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:@127.0.0.1:3306/" // 172.31.16.6
+  url      = "mysql://root:P3nt4gr4m4$1@18.212.127.147:3306/" // 172.31.16.6
   schemas  = ["android_mlm", "wms_produccion", "Conecta_carga"]
 }
 
@@ -2684,7 +2684,8 @@ model arm_order_group {
   clauseList        String? @db.VarChar(150)
   insurance         Int     @db.TinyInt
 
-  @@schema("android_mlm")
+    @@schema("android_mlm")
+
 }
 
 model arm_order_service {
@@ -2697,8 +2698,10 @@ model arm_order_service {
   insurance     Int?
   phase         Int?
 
-  @@schema("android_mlm")
+    @@schema("android_mlm")
+
 }
+
 
 model arm_autoresponder {
   AutoRespondId Int    @id @default(autoincrement())
@@ -2993,21 +2996,22 @@ model arm_country {
 }
 
 model arm_coupon {
-  CouponId            Int                   @id @default(autoincrement())
-  CouponName          String                @db.VarChar(255)
-  CouponCode          String                @db.VarChar(20)
-  CouponType          String                @db.Char(1)
-  StartDate           DateTime              @db.DateTime(0)
-  EndDate             DateTime              @db.DateTime(0)
-  UseUser             Int
-  Total               Decimal               @db.Decimal(10, 2)
-  UsedTotal           Int
-  Status              Int
-  DateAdded           DateTime              @db.DateTime(0)
-  isDelete            Int                   @default(0)
-  arm_coupon_category arm_coupon_category[]
-  arm_coupon_history  arm_coupon_history[]
-  arm_coupon_product  arm_coupon_product[]
+  CouponId                Int                       @id @default(autoincrement())
+  CouponName              String                    @db.VarChar(255)
+  CouponCode              String                    @db.VarChar(20)
+  CouponType              String                    @db.Char(1)
+  StartDate               DateTime                  @db.DateTime(0)
+  EndDate                 DateTime                  @db.DateTime(0)
+  UseUser                 Int
+  Total                   Decimal                   @db.Decimal(10, 2)
+  UsedTotal               Int
+  Status                  Int
+  DateAdded               DateTime                  @db.DateTime(0)
+  isDelete                Int                       @default(0)
+  arm_coupon_category     arm_coupon_category[]
+  arm_coupon_history      arm_coupon_history[]
+  arm_coupon_product      arm_coupon_product[]
+
 
   @@schema("android_mlm")
 }
@@ -4130,58 +4134,59 @@ model arm_oddevenmatrix {
 }
 
 model arm_order {
-  OrderId           Int                 @id @default(autoincrement())
-  OrderNumber       String              @db.VarChar(20)
-  MemberId          Int
-  FirstName         String              @default(dbgenerated("()")) @db.VarChar(50)
-  LastName          String              @db.VarChar(50)
-  Email             String              @db.VarChar(100)
-  Phone             String              @db.VarChar(15)
-  Address1          String              @db.VarChar(100)
-  Address2          String              @db.VarChar(100)
-  City              String              @db.VarChar(50)
-  State             String              @db.VarChar(50)
-  Country           String              @db.VarChar(50)
-  Zip               String              @db.VarChar(10)
-  PaymentMethod     String              @db.VarChar(50)
-  PaymentCode       String              @db.VarChar(50)
-  CustomField       String              @db.Text
-  ShipFirstName     String              @db.VarChar(50)
-  ShipLastName      String              @db.VarChar(50)
-  ShipEmail         String              @db.VarChar(100)
-  ShipPhone         String              @db.VarChar(15)
-  ShipAddress1      String              @db.VarChar(50)
-  ShipAddress2      String              @db.VarChar(50)
-  ShipCity          String              @db.VarChar(50)
-  ShipState         String              @db.VarChar(50)
-  ShipCountry       String              @db.VarChar(50)
-  ShipZip           String              @db.VarChar(20)
-  ShipMethod        String              @db.VarChar(50)
-  ShipCode          String              @db.VarChar(50)
-  ShipCustomField   String              @db.Text
-  Comment           String              @db.Text
-  OrderTotal        Decimal             @db.Decimal(15, 0)
-  Discount          Decimal             @db.Decimal(15, 0)
-  Commission        Decimal             @db.Decimal(15, 0)
-  CommissionStatus  Int
-  CouponId          Int
-  Tracking          String              @db.VarChar(50)
-  CurrencyId        Int
-  CurrencyCode      String              @db.VarChar(10)
-  Ip                String              @db.VarChar(50)
-  Status            arm_order_Status
-  DateAdded         DateTime            @db.DateTime(0)
-  ModifiedDate      DateTime            @db.DateTime(0)
-  isDelete          Int                 @default(0)
-  comprobante       String              @db.VarChar(100)
-  Idpago            String              @db.VarChar(100)
-  GuiaRemision      String              @db.VarChar(100)
-  ShipLat           String?             @db.VarChar(100)
-  ShipLng           String?             @db.VarChar(100)
-  EstadoEnvio       String?             @db.VarChar(100)
-  Sponsor           Bytes?              @db.VarBinary(50)
-  arm_currency      arm_currency        @relation(fields: [CurrencyId], references: [CurrencyId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_order_arm_currency1")
-  arm_order_product arm_order_product[]
+  OrderId                    Int                     @id @default(autoincrement())
+  OrderNumber                String                  @db.VarChar(20)
+  MemberId                   Int
+  FirstName                  String                  @default(dbgenerated("()")) @db.VarChar(50)
+  LastName                   String                  @db.VarChar(50)
+  Email                      String                  @db.VarChar(100)
+  Phone                      String                  @db.VarChar(15)
+  Address1                   String                  @db.VarChar(100)
+  Address2                   String                  @db.VarChar(100)
+  City                       String                  @db.VarChar(50)
+  State                      String                  @db.VarChar(50)
+  Country                    String                  @db.VarChar(50)
+  Zip                        String                  @db.VarChar(10)
+  PaymentMethod              String                  @db.VarChar(50)
+  PaymentCode                String                  @db.VarChar(50)
+  CustomField                String                  @db.Text
+  ShipFirstName              String                  @db.VarChar(50)
+  ShipLastName               String                  @db.VarChar(50)
+  ShipEmail                  String                  @db.VarChar(100)
+  ShipPhone                  String                  @db.VarChar(15)
+  ShipAddress1               String                  @db.VarChar(50)
+  ShipAddress2               String                  @db.VarChar(50)
+  ShipCity                   String                  @db.VarChar(50)
+  ShipState                  String                  @db.VarChar(50)
+  ShipCountry                String                  @db.VarChar(50)
+  ShipZip                    String                  @db.VarChar(20)
+  ShipMethod                 String                  @db.VarChar(50)
+  ShipCode                   String                  @db.VarChar(50)
+  ShipCustomField            String                  @db.Text
+  Comment                    String                  @db.Text
+  OrderTotal                 Decimal                 @db.Decimal(15, 0)
+  Discount                   Decimal                 @db.Decimal(15, 0)
+  Commission                 Decimal                 @db.Decimal(15, 0)
+  CommissionStatus           Int
+  CouponId                   Int
+  Tracking                   String                  @db.VarChar(50)
+  CurrencyId                 Int
+  CurrencyCode               String                  @db.VarChar(10)
+  Ip                         String                  @db.VarChar(50)
+  Status                     arm_order_Status
+  DateAdded                  DateTime                @db.DateTime(0)
+  ModifiedDate               DateTime                @db.DateTime(0)
+  isDelete                   Int                     @default(0)
+  comprobante                String                  @db.VarChar(100)
+  Idpago                     String                  @db.VarChar(100)
+  GuiaRemision               String                  @db.VarChar(100)
+  ShipLat                    String?                 @db.VarChar(100)
+  ShipLng                    String?                 @db.VarChar(100)
+  EstadoEnvio                String?                 @db.VarChar(100)
+  Sponsor                    Bytes?                  @db.VarBinary(50)
+  arm_currency               arm_currency            @relation(fields: [CurrencyId], references: [CurrencyId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_order_arm_currency1")
+  arm_order_product          arm_order_product[]
+
 
   @@index([CurrencyId], map: "fk_arm_order_arm_currency1_idx")
   @@map("arm_order")
@@ -4301,43 +4306,44 @@ model arm_point {
 }
 
 model arm_product {
-  ProductId          Int                      @id @default(autoincrement())
-  CatId              Int
-  ProductType        Int
-  File               String                   @db.Text
-  ProductName        String                   @db.VarChar(50)
-  Description        String                   @db.Text
-  Quantity           Int
-  StockStatusId      Int
-  Image              String                   @db.Text
-  Price              Decimal                  @db.Decimal(15, 4)
-  salesprice         Decimal                  @db.Decimal(15, 4)
-  TaxClassId         Int
-  Weight             Decimal                  @db.Decimal(15, 4)
-  Height             Decimal                  @db.Decimal(15, 4)
-  Length             Decimal                  @db.Decimal(15, 4)
-  DisplyShop         Boolean                  @default(true)
-  AutoShip           Boolean                  @default(false)
-  iSentrole          Boolean                  @default(false)
-  Viewed             Int
-  Attributes         String                   @db.Text
-  WeightClassId      Int
-  LengthClassId      Int
-  Type               Boolean
-  Shipping           Int
-  Points             Int
-  Status             Boolean
-  DateAdded          DateTime                 @db.DateTime(0)
-  ModifiedDate       DateTime                 @db.DateTime(0)
-  isDelete           wms_arm_product_isDelete @default(dbgenerated("(0)"))
-  idgrupo            Int?                     @default(0)
-  IMG_URL            String?                  @default(dbgenerated("()")) @db.VarChar(200)
-  lu_categoria       String?                  @default(dbgenerated("(Ticket)")) @db.VarChar(100)
-  arm_coupon_product arm_coupon_product[]
-  arm_order_product  arm_order_product[]
-  arm_category       arm_category             @relation(fields: [CatId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_product_arm_category1")
-  arm_product_desc   arm_product_desc[]
-  arm_productimage   arm_productimage[]
+  ProductId                  Int                      @id @default(autoincrement())
+  CatId                      Int
+  ProductType                Int
+  File                       String                   @db.Text
+  ProductName                String                   @db.VarChar(50)
+  Description                String                   @db.Text
+  Quantity                   Int
+  StockStatusId              Int
+  Image                      String                   @db.Text
+  Price                      Decimal                  @db.Decimal(15, 4)
+  salesprice                 Decimal                  @db.Decimal(15, 4)
+  TaxClassId                 Int
+  Weight                     Decimal                  @db.Decimal(15, 4)
+  Height                     Decimal                  @db.Decimal(15, 4)
+  Length                     Decimal                  @db.Decimal(15, 4)
+  DisplyShop                 Boolean                  @default(true)
+  AutoShip                   Boolean                  @default(false)
+  iSentrole                  Boolean                  @default(false)
+  Viewed                     Int
+  Attributes                 String                   @db.Text
+  WeightClassId              Int
+  LengthClassId              Int
+  Type                       Boolean
+  Shipping                   Int
+  Points                     Int
+  Status                     Boolean
+  DateAdded                  DateTime                 @db.DateTime(0)
+  ModifiedDate               DateTime                 @db.DateTime(0)
+  isDelete                   wms_arm_product_isDelete @default(dbgenerated("(0)"))
+  idgrupo                    Int?                     @default(0)
+  IMG_URL                    String?                  @default(dbgenerated("()")) @db.VarChar(200)
+  lu_categoria               String?                  @default(dbgenerated("(Ticket)")) @db.VarChar(100)
+  arm_coupon_product         arm_coupon_product[]
+  arm_order_product          arm_order_product[]
+  arm_category               arm_category             @relation(fields: [CatId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_product_arm_category1")
+  arm_product_desc           arm_product_desc[]
+  arm_productimage           arm_productimage[]
+
 
   @@index([CatId], map: "fk_arm_product_arm_category1_idx")
   @@schema("android_mlm")
@@ -4412,19 +4418,20 @@ model arm_ranksetting {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model arm_requestepin {
-  RequestId        Int           @id @default(autoincrement())
-  PackageId        Int
-  UserId           Int
-  PayThrough       String        @db.VarChar(100)
-  PaymentReference String        @db.VarChar(100)
-  PaymentAmount    Decimal       @db.Decimal(10, 2)
-  EpinCount        Int
-  RequestStatus    Int           @default(0) @db.TinyInt
-  DateAdded        DateTime      @db.DateTime(0)
-  ModifiedDate     DateTime      @db.DateTime(0)
-  arm_boardplan    arm_boardplan @relation(fields: [PackageId], references: [PackageId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_requestepin_arm_boardplan1")
-  arm_package      arm_package   @relation(fields: [PackageId], references: [PackageId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_requestepin_arm_package1")
-  arm_pv           arm_pv        @relation(fields: [PackageId], references: [PackageId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_requestepin_arm_pv1")
+  RequestId                  Int                @id @default(autoincrement())
+  PackageId                  Int
+  UserId                     Int
+  PayThrough                 String             @db.VarChar(100)
+  PaymentReference           String             @db.VarChar(100)
+  PaymentAmount              Decimal            @db.Decimal(10, 2)
+  EpinCount                  Int
+  RequestStatus              Int                @default(0) @db.TinyInt
+  DateAdded                  DateTime           @db.DateTime(0)
+  ModifiedDate               DateTime           @db.DateTime(0)
+  arm_boardplan              arm_boardplan      @relation(fields: [PackageId], references: [PackageId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_requestepin_arm_boardplan1")
+  arm_package                arm_package        @relation(fields: [PackageId], references: [PackageId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_requestepin_arm_package1")
+  arm_pv                     arm_pv             @relation(fields: [PackageId], references: [PackageId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_requestepin_arm_pv1")
+
 
   @@index([PackageId], map: "fk_arm_requestepin_arm_boardplan1_idx")
   @@index([PackageId], map: "fk_arm_requestepin_arm_package1_idx")
@@ -4520,16 +4527,17 @@ model arm_smstemplate {
 }
 
 model arm_subcategory {
-  SubCatId            Int                   @id @default(autoincrement())
-  CategoryId          Int
-  SubCategory         String                @db.VarChar(30)
-  Descriptions        String                @db.Text
-  Status              Boolean
-  DateAdded           DateTime              @db.DateTime(0)
-  ModifiedDate        DateTime              @db.DateTime(0)
-  Attributes          String                @db.Text
-  arm_coupon_category arm_coupon_category[]
-  arm_category        arm_category          @relation(fields: [CategoryId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_subcategory_arm_category")
+  SubCatId                   Int                       @id @default(autoincrement())
+  CategoryId                 Int
+  SubCategory                String                    @db.VarChar(30)
+  Descriptions               String                    @db.Text
+  Status                     Boolean
+  DateAdded                  DateTime                  @db.DateTime(0)
+  ModifiedDate               DateTime                  @db.DateTime(0)
+  Attributes                 String                    @db.Text
+  arm_coupon_category        arm_coupon_category[]
+  arm_category               arm_category              @relation(fields: [CategoryId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "fk_arm_subcategory_arm_category")
+
 
   @@index([CategoryId], map: "fk_arm_subcategory_arm_category_idx")
   @@schema("android_mlm")
@@ -6905,22 +6913,23 @@ model wms_arm_boardmatrix {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model wms_arm_boardplan {
-  PackageId              Int     @id @default(autoincrement())
-  PackageName            String  @db.VarChar(100)
-  PackageFee             Decimal @db.Decimal(10, 2)
-  ReentryBoardStatus     Int     @db.TinyInt
-  ReentryNextBoardStatus Int     @db.TinyInt
-  ReentryNextBoard       Int     @db.TinyInt
+  PackageId              Int               @id @default(autoincrement())
+  PackageName            String            @db.VarChar(100)
+  PackageFee             Decimal           @db.Decimal(10, 2)
+  ReentryBoardStatus     Int               @db.TinyInt
+  ReentryNextBoardStatus Int               @db.TinyInt
+  ReentryNextBoard       Int               @db.TinyInt
   FollowSponsor          Int
   BoardWidth             Int
   BoardDepth             Int
-  Status                 Int     @default(1)
-  OwnCommission          Decimal @db.Decimal(10, 2)
-  DirectCommission       Decimal @db.Decimal(10, 2)
-  BoardCommission        Decimal @db.Decimal(10, 2)
-  LevelCommission        String  @db.Text
-  ProductLevelCommission String  @db.Text
-  upgradelevel           String  @db.Text
+  Status                 Int               @default(1)
+  OwnCommission          Decimal           @db.Decimal(10, 2)
+  DirectCommission       Decimal           @db.Decimal(10, 2)
+  BoardCommission        Decimal           @db.Decimal(10, 2)
+  LevelCommission        String            @db.Text
+  ProductLevelCommission String            @db.Text
+  upgradelevel           String            @db.Text
+
 
   @@map("arm_boardplan")
   @@schema("wms_produccion")
@@ -6935,19 +6944,20 @@ model arm_categoria_tienda {
 }
 
 model wms_arm_category {
-  CategoryId     Int                       @id @default(autoincrement())
-  Category       String                    @db.VarChar(50)
-  alias_category String?                   @db.VarChar(50)
-  Image          String?                   @db.VarChar(255)
-  Description    String                    @db.Text
-  ParentId       Int                       @default(0)
-  SortOrder      Int                       @default(0)
-  Status         Boolean
-  DateAdded      DateTime                  @db.DateTime(0)
-  DateModified   DateTime?                 @default(now()) @db.DateTime(0)
-  isDelete       wms_arm_category_isDelete @default(dbgenerated("(0)"))
-  idgrupo        Int?                      @default(0)
-  iddependencia  Int?                      @default(0)
+  CategoryId       Int                       @id @default(autoincrement())
+  Category         String                    @db.VarChar(50)
+  alias_category   String?                   @db.VarChar(50)
+  Image            String?                   @db.VarChar(255)
+  Description      String                    @db.Text
+  ParentId         Int                       @default(0)
+  SortOrder        Int                       @default(0)
+  Status           Boolean
+  DateAdded        DateTime                  @db.DateTime(0)
+  DateModified     DateTime?                 @default(now()) @db.DateTime(0)
+  isDelete         wms_arm_category_isDelete @default(dbgenerated("(0)"))
+  idgrupo          Int?                      @default(0)
+  iddependencia    Int?                      @default(0)
+
 
   @@index([ParentId], map: "parentId")
   @@map("arm_category")
@@ -7133,7 +7143,7 @@ model wms_arm_coupon {
 }
 
 model wms_arm_coupon_category {
-  CouponCategoryId Int @id @default(autoincrement())
+  CouponCategoryId Int             @id @default(autoincrement())
   CouponId         Int
   CategoryId       Int
 
@@ -7144,13 +7154,13 @@ model wms_arm_coupon_category {
 }
 
 model wms_arm_coupon_history {
-  HistoryId  Int      @id @default(autoincrement())
+  HistoryId  Int        @id @default(autoincrement())
   CouponId   Int
   OrderId    Int
   CustomerId Int
-  Amount     Decimal  @db.Decimal(15, 4)
-  DateAdded  DateTime @db.DateTime(0)
-
+  Amount     Decimal    @db.Decimal(15, 4)
+  DateAdded  DateTime   @db.DateTime(0)
+ 
   @@index([CouponId], map: "fk_arm_coupon_history_arm_coupon1_idx")
   @@index([CouponId], map: "fk_arm_coupon_history_arm_discount1_idx")
   @@index([OrderId], map: "fk_arm_coupon_history_arm_order1_idx")
@@ -7159,7 +7169,7 @@ model wms_arm_coupon_history {
 }
 
 model wms_arm_coupon_product {
-  CouponProductId Int @default(autoincrement())
+  CouponProductId Int         @default(autoincrement())
   CouponId        Int
   ProductId       Int
 
@@ -7190,14 +7200,15 @@ model arm_cronometro {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model wms_arm_currency {
-  CurrencyId     Int      @id @default(autoincrement())
-  CurrencyName   String   @db.VarChar(50)
-  CurrencyCode   String   @db.VarChar(50)
-  CurrencySymbol String   @db.VarChar(50)
-  CurrencyValue  Decimal  @db.Decimal(15, 4)
-  Status         Int      @db.TinyInt
-  DateAdded      DateTime @db.DateTime(0)
-  DateModified   DateTime @db.DateTime(0)
+  CurrencyId     Int         @id @default(autoincrement())
+  CurrencyName   String      @db.VarChar(50)
+  CurrencyCode   String      @db.VarChar(50)
+  CurrencySymbol String      @db.VarChar(50)
+  CurrencyValue  Decimal     @db.Decimal(15, 4)
+  Status         Int         @db.TinyInt
+  DateAdded      DateTime    @db.DateTime(0)
+  DateModified   DateTime    @db.DateTime(0)
+
 
   @@map("arm_currency")
   @@schema("wms_produccion")
@@ -7903,28 +7914,28 @@ model wms_arm_members {
   FirstName           String?                          @db.VarChar(50)
   MiddleName          String?                          @db.VarChar(50)
   LastName            String?                          @db.VarChar(50)
-  Fullnames           String?                          @db.VarChar(50)
-  Email               String?                          @db.VarChar(100)
+  Fullnames           String?                           @db.VarChar(50)
+  Email               String?                           @db.VarChar(100)
   UserName            String                           @db.VarChar(50)
   MemberStatus        arm_members_MemberStatus
-  Password            String?                          @db.VarChar(100)
+  Password            String?                           @db.VarChar(100)
   Salt                String?                          @db.VarChar(100)
   Gender              arm_members_Gender?
-  BirthDate           DateTime?                        @default(now()) @db.DateTime(0)
-  Phone               String?                          @db.VarChar(15)
-  Fax                 String?                          @db.VarChar(150)
-  StartDate           DateTime?                        @default(now()) @db.DateTime(0)
-  EndDate             DateTime?                        @default(now()) @db.DateTime(0)
+  BirthDate           DateTime?                        @db.DateTime(0) @default(now())
+  Phone               String?                           @db.VarChar(15)
+  Fax                 String?                          @db.VarChar(150) 
+  StartDate           DateTime?                        @db.DateTime(0) @default(now())
+  EndDate             DateTime?                        @db.DateTime(0) @default(now())
   SubscriptionsStatus arm_members_SubscriptionsStatus?
   PackageId           Int?
   DirectId            Int?
   Co_DirectId         Int?                             @map("Co-DirectId")
   SpilloverId         Int?
   Position            String?                          @db.VarChar(20)
-  Address             String?                          @db.VarChar(255)
-  City                String?                          @db.VarChar(50)
-  State               String?                          @db.VarChar(80)
-  Country             String?                          @db.VarChar(30)
+  Address             String?                           @db.VarChar(255)
+  City                String?                           @db.VarChar(50)
+  State               String?                           @db.VarChar(80)
+  Country             String?                           @db.VarChar(30)
   Lng                 String?                          @default(dbgenerated("(0)")) @db.VarChar(200)
   Lat                 String?                          @default(dbgenerated("(0)")) @db.VarChar(200)
   indicacion_dir      String?                          @db.VarChar(200)
@@ -7940,9 +7951,9 @@ model wms_arm_members {
   Distrubutorstatus   Int?                             @db.TinyInt
   RouteNumber         String?                          @db.VarChar(100)
   TransactionPassword String?                          @db.VarChar(100)
-  ModifiedDate        DateTime?                        @default(now()) @db.DateTime(0)
-  DateAdded           DateTime?                        @default(now()) @db.DateTime(0)
-  UserType            wms_arm_members_UserType?        @default(dbgenerated("(3)"))
+  ModifiedDate        DateTime?                         @db.DateTime(0) @default(now())
+  DateAdded           DateTime?                         @db.DateTime(0) @default(now())
+  UserType            wms_arm_members_UserType?             @default(dbgenerated("(3)"))
   xupstatus           Boolean?
   unistatus           Int?                             @db.TinyInt
   Points              Int?                             @default(0)
@@ -7966,7 +7977,7 @@ model wms_arm_members {
   list_status         Int?                             @default(0)
   acceso_grupos       String?                          @default(dbgenerated("(0)")) @db.Char(1)
   clave_dinamica      Int?                             @default(0)
-  time_clave          DateTime?                        @default(now()) @db.DateTime(0)
+  time_clave          DateTime?                        @db.DateTime(0) @default(now())
   tope_autorizado     Int?                             @default(0)
   acumulado_saldo     Int?                             @default(0)
   deuda_conductores   Int?                             @default(0)
@@ -8355,16 +8366,16 @@ model wms_arm_order {
 }
 
 model wms_arm_order_product {
-  Id          Int      @id @default(autoincrement())
+  Id          Int         @id @default(autoincrement())
   OrderId     Int
   ProductId   Int
-  ProductName String   @db.VarChar(50)
+  ProductName String      @db.VarChar(50)
   Quantity    Int
-  Price       Decimal  @db.Decimal(10, 2)
-  Iva         Decimal? @default(0.00) @db.Decimal(10, 2)
+  Price       Decimal     @db.Decimal(10, 2)
+  Iva         Decimal?    @default(0.00) @db.Decimal(10, 2)
   Total       Int
-  Dependencia Int?     @default(0)
-  Empresa     Int?     @default(0)
+  Dependencia Int?        @default(0)
+  Empresa     Int?        @default(0)
 
   @@index([OrderId], map: "fk_arm_order_product_arm_order1_idx")
   @@index([ProductId], map: "fk_arm_order_product_arm_product1_idx")
@@ -8388,29 +8399,30 @@ model wms_arm_order_total {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model wms_arm_package {
-  PackageId                  Int      @id @default(autoincrement())
-  PackageName                String   @db.VarChar(50)
-  PackageFee                 Decimal  @db.Decimal(10, 2)
-  AdminFee                   Decimal  @db.Decimal(10, 2)
-  RenewalStatus              Int      @db.TinyInt
-  RenewalFee                 Decimal  @db.Decimal(15, 2)
-  RenewalTerm                Int      @db.TinyInt
+  PackageId                  Int               @id @default(autoincrement())
+  PackageName                String            @db.VarChar(50)
+  PackageFee                 Decimal           @db.Decimal(10, 2)
+  AdminFee                   Decimal           @db.Decimal(10, 2)
+  RenewalStatus              Int               @db.TinyInt
+  RenewalFee                 Decimal           @db.Decimal(15, 2)
+  RenewalTerm                Int               @db.TinyInt
   AutoDebitStatus            Int
   AutoCreateOrderStatus      Int
-  RecurringStatus            Int      @db.TinyInt
-  RecurringFee               Decimal  @db.Decimal(10, 2)
+  RecurringStatus            Int               @db.TinyInt
+  RecurringFee               Decimal           @db.Decimal(10, 2)
   ProductId                  Int
-  ProductName                String   @db.VarChar(100)
-  OwnCommission              Decimal  @db.Decimal(10, 2)
-  MatrixCompletionCommission Decimal  @db.Decimal(10, 2)
-  LevelCompletedCommission   Decimal  @db.Decimal(10, 2)
-  LevelCommissions           String   @db.Text
-  ProductLevelCommissions    String   @db.Text
-  Image                      String   @db.VarChar(255)
+  ProductName                String            @db.VarChar(100)
+  OwnCommission              Decimal           @db.Decimal(10, 2)
+  MatrixCompletionCommission Decimal           @db.Decimal(10, 2)
+  LevelCompletedCommission   Decimal           @db.Decimal(10, 2)
+  LevelCommissions           String            @db.Text
+  ProductLevelCommissions    String            @db.Text
+  Image                      String            @db.VarChar(255)
   Points                     Int
   Status                     Boolean
-  DateAdded                  DateTime @db.DateTime(0)
-  ModifiedDate               DateTime @db.DateTime(0)
+  DateAdded                  DateTime          @db.DateTime(0)
+  ModifiedDate               DateTime          @db.DateTime(0)
+
 
   @@map("arm_package")
   @@schema("wms_produccion")
@@ -8553,62 +8565,63 @@ model wms_arm_product {
 }
 
 model arm_product_copy {
-  ProductId         Int                       @id @default(autoincrement())
-  CatId             Int
-  ProductType       Int
-  File              String                    @db.Text
-  ProductName       String                    @db.VarChar(100)
-  Description       String                    @db.Text
-  Quantity          Int
-  StockStatusId     Int
-  Image             String                    @db.Text
-  Price             Decimal                   @db.Decimal(15, 2)
-  PriceDiscount     Decimal?                  @default(0.00) @db.Decimal(15, 2)
-  salesprice        Decimal?                  @default(0.00) @db.Decimal(10, 2)
-  TaxClassId        Int                       @default(0)
-  Weight            Decimal                   @db.Decimal(15, 4)
-  Height            Decimal                   @db.Decimal(15, 4)
-  Length            Decimal                   @db.Decimal(15, 4)
-  DisplyShop        Boolean                   @default(true)
-  AutoShip          Boolean                   @default(false)
-  iSentrole         Boolean                   @default(false)
-  Viewed            Int
-  Attributes        String                    @db.Text
-  Attributes2       String?                   @db.Text
-  WeightClassId     Int
-  LengthClassId     Int
-  Type              Boolean
-  Shipping          Int
-  Points            Int
-  Status            Boolean
-  DateAdded         DateTime                  @db.DateTime(0)
-  ModifiedDate      DateTime                  @default(now()) @db.DateTime(0)
-  isDelete          arm_product_copy_isDelete @default(dbgenerated("(0)"))
-  idgrupo           Int?                      @default(0)
-  IMG_URL           String?                   @default(dbgenerated("()")) @db.VarChar(200)
-  lu_categoria      String?                   @default(dbgenerated("(Ticket)")) @db.VarChar(100)
-  id_wms            Int?                      @default(0)
-  Origen            String?                   @db.VarChar(100)
-  id_empresa        Int?
-  created_at        DateTime                  @default(now()) @db.Timestamp(0)
-  updated_at        DateTime                  @default(now()) @db.Timestamp(0)
-  MemberId          Int?                      @default(0)
-  aplica_iva        Int?                      @default(1)
-  alias_producto    String?                   @db.VarChar(50)
-  Codigo            String?                   @db.VarChar(20)
-  show_marketplace  Boolean?                  @default(false)
-  tipo_descuento    String?                   @db.VarChar(20)
-  CatId_Marketplace Int                       @default(0)
-  arm_category      arm_category              @relation(fields: [CatId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "arm_product_copy_ibfk_1")
+  ProductId                  Int                       @id @default(autoincrement())
+  CatId                      Int
+  ProductType                Int
+  File                       String                    @db.Text
+  ProductName                String                    @db.VarChar(100)
+  Description                String                    @db.Text
+  Quantity                   Int
+  StockStatusId              Int
+  Image                      String                    @db.Text
+  Price                      Decimal                   @db.Decimal(15, 2)
+  PriceDiscount              Decimal?                  @default(0.00) @db.Decimal(15, 2)
+  salesprice                 Decimal?                  @default(0.00) @db.Decimal(10, 2)
+  TaxClassId                 Int                       @default(0)
+  Weight                     Decimal                   @db.Decimal(15, 4)
+  Height                     Decimal                   @db.Decimal(15, 4)
+  Length                     Decimal                   @db.Decimal(15, 4)
+  DisplyShop                 Boolean                   @default(true)
+  AutoShip                   Boolean                   @default(false)
+  iSentrole                  Boolean                   @default(false)
+  Viewed                     Int
+  Attributes                 String                    @db.Text
+  Attributes2                String?                   @db.Text
+  WeightClassId              Int
+  LengthClassId              Int
+  Type                       Boolean
+  Shipping                   Int
+  Points                     Int
+  Status                     Boolean
+  DateAdded                  DateTime                  @db.DateTime(0)
+  ModifiedDate               DateTime                  @default(now()) @db.DateTime(0)
+  isDelete                   arm_product_copy_isDelete @default(dbgenerated("(0)"))
+  idgrupo                    Int?                      @default(0)
+  IMG_URL                    String?                   @default(dbgenerated("()")) @db.VarChar(200)
+  lu_categoria               String?                   @default(dbgenerated("(Ticket)")) @db.VarChar(100)
+  id_wms                     Int?                      @default(0)
+  Origen                     String?                   @db.VarChar(100)
+  id_empresa                 Int?
+  created_at                 DateTime                  @default(now()) @db.Timestamp(0)
+  updated_at                 DateTime                  @default(now()) @db.Timestamp(0)
+  MemberId                   Int?                      @default(0)
+  aplica_iva                 Int?                      @default(1)
+  alias_producto             String?                   @db.VarChar(50)
+  Codigo                     String?                   @db.VarChar(20)
+  show_marketplace           Boolean?                  @default(false)
+  tipo_descuento             String?                   @db.VarChar(20)
+  CatId_Marketplace          Int                       @default(0)
+  arm_category               arm_category              @relation(fields: [CatId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "arm_product_copy_ibfk_1")
+
 
   @@index([CatId], map: "fk_arm_product_arm_category1_idx")
   @@schema("wms_produccion")
 }
 
 model wms_arm_product_desc {
-  id          Int    @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   ProductId   Int
-  Description String @db.Text
+  Description String      @db.Text
 
   @@index([ProductId], map: "fk_arm_product_desc_arm_product1_idx")
   @@map("arm_product_desc")
@@ -8616,11 +8629,11 @@ model wms_arm_product_desc {
 }
 
 model wms_arm_productimage {
-  ImageId      Int    @id @default(autoincrement())
+  ImageId      Int         @id @default(autoincrement())
   ProductId    Int
-  productImage String @db.VarChar(250)
+  productImage String      @db.VarChar(250)
   SortOrder    Int
-
+ 
   @@index([ProductId], map: "fk_arm_productimage_arm_product1_idx")
   @@map("arm_productimage")
   @@schema("wms_produccion")
@@ -8628,27 +8641,27 @@ model wms_arm_productimage {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model wms_arm_pv {
-  PackageId                   Int      @id @default(autoincrement())
-  PackageName                 String   @db.VarChar(50)
-  PackageFee                  Decimal  @db.Decimal(10, 2)
+  PackageId                   Int               @id @default(autoincrement())
+  PackageName                 String            @db.VarChar(50)
+  PackageFee                  Decimal           @db.Decimal(10, 2)
   DailyMaximumPv              Int
   DailyMaximumPairs           Int
-  OwnCommission               Decimal  @db.Decimal(10, 2)
-  DirectCommission            Decimal  @db.Decimal(10, 2)
-  PairCommissionStatus        Int      @db.TinyInt
-  PairCommission              Decimal  @db.Decimal(10, 2)
-  pointvalue                  String   @db.VarChar(50)
+  OwnCommission               Decimal           @db.Decimal(10, 2)
+  DirectCommission            Decimal           @db.Decimal(10, 2)
+  PairCommissionStatus        Int               @db.TinyInt
+  PairCommission              Decimal           @db.Decimal(10, 2)
+  pointvalue                  String            @db.VarChar(50)
   PairCommissionType          Int
-  MatchingBonus               String   @db.Text
-  MatchingPair                String   @db.Text
-  ProductLevelCommissions     String   @db.Text
-  Status                      Boolean  @default(true)
-  DateAdded                   DateTime @db.DateTime(0)
-  ModifiedDate                DateTime @db.DateTime(0)
+  MatchingBonus               String            @db.Text
+  MatchingPair                String            @db.Text
+  ProductLevelCommissions     String            @db.Text
+  Status                      Boolean           @default(true)
+  DateAdded                   DateTime          @db.DateTime(0)
+  ModifiedDate                DateTime          @db.DateTime(0)
   pv                          Int
   cv                          Int
-  porcentajeActivacionMensual String   @db.Text
-  porcentajeCompraExtra       String   @db.Text
+  porcentajeActivacionMensual String            @db.Text
+  porcentajeCompraExtra       String            @db.Text
 
   @@map("arm_pv")
   @@schema("wms_produccion")
@@ -12492,45 +12505,46 @@ model productos_pendientes {
 }
 
 model products {
-  ProductId     Int               @id @default(autoincrement())
-  CatId         Int
-  ProductType   Int
-  File          String            @db.Text
-  ProductName   String            @db.VarChar(50)
-  Description   String            @db.Text
-  Quantity      Int
-  StockStatusId Int
-  Image         String            @db.Text
-  Price         Decimal           @db.Decimal(15, 0)
-  PriceDiscount Decimal?          @default(0) @db.Decimal(15, 0)
-  salesprice    Decimal           @db.Decimal(15, 0)
-  TaxClassId    Int
-  Weight        Decimal           @db.Decimal(15, 4)
-  Height        Decimal           @db.Decimal(15, 4)
-  Length        Decimal           @db.Decimal(15, 4)
-  DisplyShop    Boolean           @default(true)
-  AutoShip      Boolean           @default(false)
-  iSentrole     Boolean           @default(false)
-  Viewed        Int
-  Attributes    String            @db.Text
-  WeightClassId Int
-  LengthClassId Int
-  Type          Boolean
-  Shipping      Int
-  Points        Int
-  Status        Boolean
-  DateAdded     DateTime          @db.DateTime(0)
-  ModifiedDate  DateTime          @db.DateTime(0)
-  isDelete      products_isDelete @default(dbgenerated("(0)"))
-  idgrupo       Int?              @default(0)
-  IMG_URL       String?           @default(dbgenerated("()")) @db.VarChar(200)
-  lu_categoria  String?           @default(dbgenerated("(Ticket)")) @db.VarChar(100)
-  id_wms        Int?              @default(0)
-  Origen        String?           @db.VarChar(100)
-  id_empresa    Int?
-  created_at    DateTime          @default(now()) @db.Timestamp(0)
-  updated_at    DateTime          @default(now()) @db.Timestamp(0)
-  arm_category  arm_category      @relation(fields: [CatId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "products_ibfk_1")
+  ProductId                  Int               @id @default(autoincrement())
+  CatId                      Int
+  ProductType                Int
+  File                       String            @db.Text
+  ProductName                String            @db.VarChar(50)
+  Description                String            @db.Text
+  Quantity                   Int
+  StockStatusId              Int
+  Image                      String            @db.Text
+  Price                      Decimal           @db.Decimal(15, 0)
+  PriceDiscount              Decimal?          @default(0) @db.Decimal(15, 0)
+  salesprice                 Decimal           @db.Decimal(15, 0)
+  TaxClassId                 Int
+  Weight                     Decimal           @db.Decimal(15, 4)
+  Height                     Decimal           @db.Decimal(15, 4)
+  Length                     Decimal           @db.Decimal(15, 4)
+  DisplyShop                 Boolean           @default(true)
+  AutoShip                   Boolean           @default(false)
+  iSentrole                  Boolean           @default(false)
+  Viewed                     Int
+  Attributes                 String            @db.Text
+  WeightClassId              Int
+  LengthClassId              Int
+  Type                       Boolean
+  Shipping                   Int
+  Points                     Int
+  Status                     Boolean
+  DateAdded                  DateTime          @db.DateTime(0)
+  ModifiedDate               DateTime          @db.DateTime(0)
+  isDelete                   products_isDelete @default(dbgenerated("(0)"))
+  idgrupo                    Int?              @default(0)
+  IMG_URL                    String?           @default(dbgenerated("()")) @db.VarChar(200)
+  lu_categoria               String?           @default(dbgenerated("(Ticket)")) @db.VarChar(100)
+  id_wms                     Int?              @default(0)
+  Origen                     String?           @db.VarChar(100)
+  id_empresa                 Int?
+  created_at                 DateTime          @default(now()) @db.Timestamp(0)
+  updated_at                 DateTime          @default(now()) @db.Timestamp(0)
+  arm_category               arm_category      @relation(fields: [CatId], references: [CategoryId], onDelete: NoAction, onUpdate: NoAction, map: "products_ibfk_1")
+
 
   @@index([CatId], map: "fk_arm_product_arm_category1_idx")
   @@schema("wms_produccion")

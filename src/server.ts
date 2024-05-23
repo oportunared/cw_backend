@@ -17,6 +17,7 @@ import FileController from "./controllers/file.controller";
 import TiendaController from "./controllers/tienda.controller";
 import ValoracionController from "./controllers/valoracion.controller";
 import OrdersController from "./controllers/orders.controller";
+import ServicesController from "./controllers/services.controller";
 
 const port = config.port as number;
 const host = config.host as string;
@@ -37,6 +38,7 @@ const app = new App(
     new TiendaController(),
     new ValoracionController(),
     new OrdersController(),
+    new ServicesController()
   ],
   host,
   port
