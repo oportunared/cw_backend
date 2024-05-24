@@ -33,6 +33,16 @@ class LinesService {
   });
 };
 
+updateClausule = async (id: number):Promise<any> => {
+ 
+  return await LinesService.prisma.lineas_grupos_servicio.update({
+    where: { id: id },
+    data: {
+      finish: 1,
+    },
+  });
+};
+
 }
 
 export default LinesService;

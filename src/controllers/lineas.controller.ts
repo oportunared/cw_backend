@@ -22,6 +22,8 @@ class LineasController implements IController {
     this.router.get(`${this.path}/getLines`,this.getLines);
     this.router.post(`${this.path}/createServiceClausules`,this.createServiceClausules);
     this.router.post(`${this.path}/getServiceClausules`,this.getClausulesByServiceId);
+    this.router.post(`${this.path}/updateClausule`,this.updateClausule);
+
 
 
   }
@@ -59,6 +61,30 @@ class LineasController implements IController {
     res: express.Response
   ) => {
    return res.status(200).send( await this.linesService.getClausulesByServiceId(req.body.serviceId)) 
+  };
+
+
+  updateClausule = async (
+    request: express.Request,
+    response: express.Response
+  ) => {
+    const data = request.body;
+    console.log('data es');
+    console.log(data);
+    try {
+      if (!data) {
+        return response
+          .status(400)
+          .json({ message: "Faltan datos para actualizar la clausula" });
+      }
+
+      const service = await this.linesService.updateClausule(data.id);
+      console.log('Sale de actualizado de clausula');
+
+      return response.json({ message: "Clausula actualizada con éxito", service });
+    } catch (error) {
+      return response.status(500).json({ error: "Error al actualizar la clausula" });
+    }
   };
 
 }
