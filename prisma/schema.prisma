@@ -5437,6 +5437,21 @@ model lineas_grupos {
   @@schema("android_mlm")
 }
 
+model lineas_grupos_servicio {
+  id          Int     @id @default(autoincrement())
+  descripcion String? @db.VarChar(255)
+  idgrupo     Int?
+  serviceId   Int?
+  encuesta    Int?
+  idlinea     Int?
+  nombrelinea String? @db.VarChar(255)
+  cliente     Int?    @default(0)
+  finish      Int     @db.TinyInt
+  observation  String? @db.VarChar(255)
+
+  @@schema("android_mlm")
+}
+
 model lineas_grupos_copy1 {
   id          Int     @id @default(autoincrement())
   descripcion String? @db.VarChar(255)
@@ -5462,6 +5477,8 @@ model lineas_grupos_tipos {
 
   @@schema("android_mlm")
 }
+
+
 
 model lineas_grupos_tipos_copy1 {
   id           Int     @id @default(autoincrement())

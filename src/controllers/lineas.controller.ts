@@ -19,10 +19,9 @@ class LineasController implements IController {
   }
 
   public initialzeRoutes() {
-    this.router.get(
-      `${this.path}/getLines`,
-      this.getLines
-    );
+    this.router.get(`${this.path}/getLines`,this.getLines);
+    this.router.post(`${this.path}/createServiceClausules`,this.createServiceClausules);
+
   }
 
   getLines = async (
@@ -30,8 +29,30 @@ class LineasController implements IController {
     res: express.Response
   ) => {
    return res.status(200).send( await this.linesService.getLines()) 
+  };
 
-   
+  createServiceClausules = async (
+    req: express.Request,
+    res: express.Response
+  ) => {
+    try {
+      console.log(req.body)
+      const data = req.body;
+    const serviceId = data.serviceId;
+    const clausules : any[] = data.clausules;
+    console.log(serviceId)
+    console.log(clausules)
+
+    clausules.forEach(async (element)  => {
+      await this.linesService.createServiceclausules(serviceId, element)
+    }) 
+
+
+   return res.status(200).send( {"success": true, "message": "Clausulas creadas con exito"}) 
+    } catch (error) {
+      return res.status(500).send( {"success": false, "message": "Error al conectar con base de datos"}) 
+
+    }
   };
 }
 
