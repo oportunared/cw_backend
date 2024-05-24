@@ -17,11 +17,11 @@ console.log('va a lanzar prisma')
       data: {
         groupId: groupId,
         memberId: memberId,
-        PaymentMethod: PaymentMethod,
+        paymentMethod: PaymentMethod,
         totalValue: totalValue,
         takerId: takerId,
         insurance: insurance,
-        phase: 0
+        state: 'Disponible'
       },
     });
   };
@@ -37,7 +37,7 @@ console.log('va a lanzar prisma')
     return await ServicesService.prisma.arm_order_group.create({
       data: {
         groupId: groupId as number,
-        PaymentMethodList: PaymentMethodList,
+        paymentMethodList: PaymentMethodList,
         insurance: insurance,
         clauseList: clauseList
       },
@@ -79,7 +79,7 @@ console.log('va a lanzar prisma')
     return await ServicesService.prisma.arm_order_service.update({
       where: { OrderId: parseInt(data.orderId) },
       data: {
-        phase: data.phase ?? current?.phase,
+        state: data.state ?? current?.state,
         takerId: data.takerId ?? current?.takerId,
       },
     });

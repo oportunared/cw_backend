@@ -2680,7 +2680,7 @@ enum cc_arm_order_Status {
 model arm_order_group {
   id                Int     @id @default(autoincrement())
   groupId           Int?
-  PaymentMethodList String? @db.VarChar(50)
+  paymentMethodList String? @db.VarChar(50)
   clauseList        String? @db.VarChar(150)
   insurance         Int     @db.TinyInt
 
@@ -2692,10 +2692,10 @@ model arm_order_service {
   memberId      Int?
   groupId       Int?
   takerId       Int?
-  PaymentMethod Int?
+  paymentMethod Int?
   totalValue    Int?
   insurance     Int?
-  phase         Int?
+  state         String? @db.VarChar(50)
 
   @@schema("android_mlm")
 }
