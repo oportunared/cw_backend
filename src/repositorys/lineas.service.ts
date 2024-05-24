@@ -25,6 +25,14 @@ class LinesService {
   });
  }
 
+ getClausulesByServiceId = async (serviceId) => {
+  return await LinesService.prisma.lineas_grupos_servicio.findMany({
+    where: {
+      serviceId: serviceId
+    } 
+  });
+};
+
 }
 
 export default LinesService;
