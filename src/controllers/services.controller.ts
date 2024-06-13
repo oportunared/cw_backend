@@ -50,7 +50,7 @@ class ServicesController implements IController {
         data.PaymentMethod,
         data.totalValue,
         data.takerId,
-        data.insurance,
+        data.insurance
       );
       console.log('Sale de crear servicio');
 
@@ -123,6 +123,10 @@ class ServicesController implements IController {
         data.groupId,
         data.PaymentMethodList,
         data.insurance,
+        data.name,
+        data.category,
+        data.quickDesp,
+        data.fatDesp
       );
       console.log('Sale de crear servicio');
 

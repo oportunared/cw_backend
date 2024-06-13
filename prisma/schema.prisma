@@ -2680,15 +2680,19 @@ enum cc_arm_order_Status {
 model arm_order_group {
   id                Int     @id @default(autoincrement())
   groupId           Int?
-  paymentMethodList String? @db.VarChar(50)
-  clauseList        String? @db.VarChar(150)
+  paymentMethodList String? @db.VarChar(100)
+  clauseList        String? @db.VarChar(300)
   insurance         Int     @db.TinyInt
+  fatDesp           String? @db.VarChar(300)
+  quickDesp         String? @db.VarChar(100)
+  category          String? @db.VarChar(100)
+  name              String? @db.VarChar(100)
 
   @@schema("android_mlm")
 }
 
 model arm_order_service {
-  OrderId       Int  @id @default(autoincrement())
+  OrderId       Int     @id @default(autoincrement())
   memberId      Int?
   groupId       Int?
   takerId       Int?
@@ -5447,7 +5451,7 @@ model lineas_grupos_servicio {
   nombrelinea String? @db.VarChar(255)
   cliente     Int?    @default(0)
   finish      Int     @db.TinyInt
-  observation  String? @db.VarChar(255)
+  observation String? @db.VarChar(255)
 
   @@schema("android_mlm")
 }
@@ -5477,8 +5481,6 @@ model lineas_grupos_tipos {
 
   @@schema("android_mlm")
 }
-
-
 
 model lineas_grupos_tipos_copy1 {
   id           Int     @id @default(autoincrement())

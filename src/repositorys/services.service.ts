@@ -10,7 +10,8 @@ class ServicesService {
     PaymentMethod: number,
     totalValue: number,
     takerId: number,
-    insurance: number
+    insurance: number,
+
   ): Promise<any> => {
 console.log('va a lanzar prisma')
     return await ServicesService.prisma.arm_order_service.create({
@@ -21,7 +22,8 @@ console.log('va a lanzar prisma')
         totalValue: totalValue,
         takerId: takerId,
         insurance: insurance,
-        state: 'Disponible'
+        state: 'Disponible',
+
       },
     });
   };
@@ -31,7 +33,11 @@ console.log('va a lanzar prisma')
     clauseList : string,
     groupId : number,
     PaymentMethodList: string,
-    insurance: number
+    insurance: number,
+    name: string,
+    category: string,
+    quickDesp: string,
+    fatDesp: string
   ): Promise<any> => {
 console.log('va a lanzar prisma')
     return await ServicesService.prisma.arm_order_group.create({
@@ -39,7 +45,11 @@ console.log('va a lanzar prisma')
         groupId: groupId as number,
         paymentMethodList: PaymentMethodList,
         insurance: insurance,
-        clauseList: clauseList
+        clauseList: clauseList,
+        name: name,
+        category: category,
+        quickDesp: quickDesp,
+        fatDesp: fatDesp,
       },
     });
   };
