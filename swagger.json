@@ -742,6 +742,351 @@
         }
       },
 
+      "/usuarios_config": {
+        "get" : {
+          "summary" : "Obtiene las configuraciones de una empresa según su ID",
+          "tags" : ["Servicios Wallet" ],
+          "description": "El parametro id es el correo de la empresa.",
+          "parameters" : [{
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+            	"type": "string"
+          	}
+        	}],
+          "responses" : {
+            "200" : {
+              "data": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+
+        }
+      },
+
+      "/getUserID": {
+        "get" : {
+          "summary" : "Obtiene las configuraciones de un usuario según su ID",
+          "tags" : ["Servicios Wallet" ],
+          "description": "El parametro id es el correo del usuario.",
+          "parameters" : [{
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+            	"type": "string"
+          	}
+        	}],
+          "responses" : {
+            "200" : {
+              "data": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+
+        }
+      },
+
+      "/get_tipos_Usuarios": {
+        "post" : {
+          "summary" : "Trae las tipologias segun usuario",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "id":{"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/getTiposFunciones": {
+        "post" : {
+          "summary" : "Trae los datos adicionales para el funcionamineto de ciertas tipologias",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "idFun":{"type":"string"}, 
+                    "idM":{"type":"string"},
+                    "idTipo":{"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/upload'": {
+        "post" : {
+          "summary" : "Carga al server una foto asignada a una tipologia",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "funcionario":{"type":"string"}, 
+                    "idVisita":{"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/insertaRegistroVisita2'": {
+        "post" : {
+          "summary" : "Guarda resgistro de tiologia de georeferencia",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "cliente":{"type":"string"}, 
+                    "vendedor":{"type":"string"},
+                    "observa":{"type":"string"}, 
+                    "lat":{"type":"string"}, 
+                    "lng":{"type":"string"}, 
+                    "fecha":{"type":"string"}, 
+                    "otrocampo":{"type":"string"}, 
+                    "tiempo":{"type":"string"}, 
+                    "tipo":{"type":"string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/insertaEncuesta'": {
+        "post" : {
+          "summary" : "Guardar las respuestas a una tipologia de formularios",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "body":{"type":"JSON"}
+                    
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/insertaRegistroCliente'": {
+        "post" : {
+          "summary" : "Crear un nuevo cleinte asociado a un grupo",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "cliente":{"type":"string"}, 
+                    "vendedor":{"type":"string"},
+                    "observa":{"type":"string"}, 
+                    "lat":{"type":"string"}, 
+                    "lng":{"type":"string"}, 
+                    "idGrupo":{"type":"string"}, 
+                    "dirección":{"type":"string"}, 
+                    "telefono":{"type":"string"}, 
+                    "email":{"type":"string"},
+                    "nit":{"type":"string"}
+                    
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/actualizaRegistroCliente'": {
+        "post" : {
+          "summary" : "Actualizar datos de un cliente",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "cliente":{"type":"string"}, 
+                    "vendedor":{"type":"string"},
+                    "lat":{"type":"string"}, 
+                    "lng":{"type":"string"},
+                    "idGrupo":{"type":"string"}, 
+                    "dirección":{"type":"string"}, 
+                    "telefono":{"type":"string"}, 
+                    "email":{"type":"string"}
+                    
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
+      "/getQRContactoP'": {
+        "post" : {
+          "summary" : "Para verificar la existencia de un usuario al agregarlo como amigo de otro",
+          "tags" : ["Servicios de Autenticación" ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type":"object",
+                  "properties":{
+                    "Email":{"type":"string"}
+                    
+                  }
+                }
+              }
+            }
+          },
+          "responses" : {
+            "200" : {
+              "description": "JSON"
+            }
+          },
+          "servers": [{
+            "url": "http://localhost:8011"
+          },
+          {
+            "url": "https://pd.oportuna.red"
+          }
+          ]
+        }
+      },
+
       "/servicios4": {
         "get": {
           "summary":"Consulta los servicios con estado unpaid",
