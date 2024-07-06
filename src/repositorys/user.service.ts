@@ -9,9 +9,22 @@ class UserService {
   static prisma = new PrismaClient();
 
   findByEmail = async (email: string) => {
-    return await UserService.prisma.arm_members.findFirst({
+    console.log('va a buscar user ' + email)
+    var user = await UserService.prisma.arm_members.findFirst({
       where: {
         Email: email,
+      },
+    });
+
+    return user
+  };
+
+  findAdminGroup = async (groupId: number) => {
+    console.log('va a buscar admin de grupo '+ groupId)
+    return await UserService.prisma.arm_members.findFirst({
+      where: {
+        idgrupo: groupId,
+        acumulado_saldo: { not: 0 }
       },
     });
   };

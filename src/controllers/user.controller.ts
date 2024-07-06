@@ -32,14 +32,28 @@ class UserController implements IController {
     }
 
     public initialzeRoutes(){
-        this.router.get(`${this.path}/:id([0-9]+)`, [authMiddleware()], this.getUserByID);
+        this.router.get(`${this.path}/:id([0-9]+)`, this.getUserByID);
         //this.router.patch(`${this.path}/:id([0-9]+)`, [authMiddleware(), validationMiddleware(ModifyUserDTO)], this.modifyUserByID )
-        this.router.post(`${this.path}/getByEmail`, [authMiddleware()],  this.getUserByEmail);
+        this.router.post(`${this.path}/getByEmail`,  this.getUserByEmail);
+        this.router.post(`${this.path}/getGroupAdmin`,  this.getGroupAdmin);
     }
 
     getUserByEmail = async (request: express.Request, response: express.Response) => {
-        var email = request.params.email;
-        return await this.userService.findByEmail(email);
+        var email = request.body.email;
+        console.log('email es ')
+        console.log(email)
+        var user = await this.userService.findByEmail(email);
+        response.send(omit(user, 'password'));
+      
+    }
+
+    getGroupAdmin = async (request: express.Request, response: express.Response) => {
+        var id = request.body.groupId;
+        console.log('id group is ')
+        console.log(id)
+        var user = await this.userService.findAdminGroup(id);
+        response.send(omit(user, 'password'));
+      
     }
 
     getUserByID = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
@@ -50,9 +64,11 @@ class UserController implements IController {
             if(currentUser?.MemberId !== undefined){
                 response.send(omit(currentUser, 'password'));
             } else {
+                console.log('1')
                 next(new UserNotFoundException(id)) 
             }
         } catch(e){
+            console.log('2')
             next(new UserNotFoundException(id))
         }
     }

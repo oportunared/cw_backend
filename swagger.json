@@ -1424,9 +1424,8 @@
           }
         },
         "responses": {
-         
-          "200": {
-            "description": "Conexion, decodificación y proceso exitoso",
+         "200": {
+            "description": "Se realiza la venta con exito",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
@@ -1435,35 +1434,80 @@
                 },
                 "example": {
                   "success": true,
-                  "transactionToken": "ae478a9e-2e80-11ef-a964-d57ecb23ebe6",
-                  "payData": {
-                      "url": "https://registro.pse.com.co/PSENF/index.html?enc=dNItA4oDs4NNxq0stIPOkowIk2tgiol4VImdfXnd%2fWM%3d",
-                      "reference": "b176cfe0-2e80-11ef-8d4b-7bb508a3c10d",
-                      "resourceId": "6680059",
-                      "expiresIn": "2024-06-19T21:22:53.856Z",
-                      "status": 1
+                  "message": "Venta exitosa",
+                  "data": {
+                    "preBalance": 0,
+                    "posBalance": 38600,
+                    "tmpBalance": 456,
+                    "debt": 0,
+                    "message": "Venta exitosa #434957646, por valor de 1000, nuevo saldo: 38600",
+                    "data": {}
                   }
-              }
+                }
               }
             }
           },
-          "401": {
-            "success": false,
-            "message": "Token auth no ha sido generado, genera un token de QR primero para poder consumir este servicio"
-          },
           "400": {
-            "success": false,
-            "message": "Error de autentificación de datos de usuario"
+            "description": "Error en los datos utilizados para codificar el token",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": {
+                  "success": false,
+                  "message": "Error de autentificación de datos de usuario"
+                }
+              }
+            }
           },
-          "500": {
-            "success": false,
-            "message": "Oportuna o Refacil mensaje error"
-          },
-          "501": {
-            "success": false,
-            "message": "No se pudo conectar con el API de Refacil",
-            "data": "Saldo insuficiente para el retiro o problemas similares con cuenta bancaria BASE del API o del numero asignado a la dispersión (313#######)"
-          }
+            "401": {
+              "description": "Token auth no ha sido generado",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "example": {
+                    "success": false,
+                    "message": "Token auth no ha sido generado, genera un token de QR primero para poder consumir este servicio"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Server error",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "example": {
+                    "success": false,
+                    "message": "Oportuna o Refacil mensaje error"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Error de saldo co el proveedor",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "example": {
+                    "success": false,
+                    "message": "No se pudo conectar con el API de Refacil",
+                    "data": "Saldo insuficiente para el retiro o problemas similares con cuenta bancaria BASE del API o del numero asignado a la dispersión (313#######)"
+                  }
+                }
+              }
+            }
         },
         "servers": [
           {
@@ -1664,23 +1708,22 @@
               }
             }
           },
-          "401": {
-            "success": false,
-            "message": "Token auth no ha sido generado, genera un token de QR primero para poder consumir este servicio"
-          },
-          "400": {
-            "success": false,
-            "message": "Error de autentificación de datos de usuario"
-          },
-          "500": {
-            "success": false,
-            "message": "Oportuna o Refacil mensaje error"
-          },
-          "501": {
-            "success": false,
-            "message": "No se pudo conectar con el API de Refacil",
-            "data": "Saldo insuficiente para el retiro o problemas similares con cuenta bancaria BASE del API o del numero asignado a la dispersión (313#######)"
-          }
+          
+            "500": {
+              "description": "Server error",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "example": { "success": false, 
+                  "message": "No se pudo establecer conexión con Refacil",
+                   "error": "Refacil error" }
+                  
+                }
+              }
+            }
         },
         "servers": [
           {
@@ -1739,7 +1782,22 @@
                 }
               }
             }
-          }
+          },
+          "500": {
+              "description": "Server error",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "example": { "success": false, 
+                  "message": "No se pudo establecer conexión con Refacil",
+                   "error": "Refacil error" }
+                  
+                }
+              }
+            }
         },
         "servers": [
           {
